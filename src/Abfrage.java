@@ -17,7 +17,17 @@ public class Abfrage {
 	 * @param frage
 	 */
 	public static int abfrageInt(String frage){
-		return 0;
+      try {
+        int zahl = Integer.parseInt(abfrageString(frage)); 
+        if (zahl < 0) {
+        	throw new NumberFormatException(""); 
+        }
+        return zahl; 
+      }
+      catch ( NumberFormatException e) {
+    	 System.out.println("Bitte eine gültige Zahl eingeben");
+    	 return abfrageInt(frage);
+      }
 	}
 
 	/**
