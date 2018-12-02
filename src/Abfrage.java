@@ -1,5 +1,9 @@
 import java.util.Scanner; 
-
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar; 
+import java.text.SimpleDateFormat; 
+import java.text.ParseException; 
 /**
  * @author lukas
  * @version 1.0
@@ -8,9 +12,7 @@ import java.util.Scanner;
 public class Abfrage {
 
 	public Abfrage(){
-
 	}
-
 
 	/**
 	 * 
@@ -43,7 +45,25 @@ public class Abfrage {
 		catch ( Exception e) {
 			return ""; 	
 		}
-		
 	}
+	
+	/**
+	 *
+	 *
+	 */
+	public static Calendar abfrageUhrzeit(String frage) {
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm"); 
+		try {
+			Date date = formatter.parse(abfrageString(frage + " (HH:mm):"));
+			Calendar calendar = new GregorianCalendar(); 
+			calendar.setTime(date);
+			return calendar; 
+		}
+		catch(ParseException e) {
+			System.out.println("Bitte eine gültige Uhrzeit eingeben!");
+			return abfrageUhrzeit(frage);
+		}
+	}
+	
 
 }
