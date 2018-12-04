@@ -1,5 +1,4 @@
-
-
+package flughafen.flugzeug;
 /**
  * @author lukas
  * @version 1.0
@@ -9,8 +8,68 @@ public class Flugzeug {
 
 	private static int anzahlFlugzeuge;
 	private String fluggesellschaft;
-	private String flugnummer;
-	private String flugzeugtyp = "MI 101";
+	private String flugnummer= "MI 101";
+	private String flugzeugtyp;
+	private String istzeitLandung;
+	private String istzeitStart;
+	private int landebahn;
+	private String parkstelle;
+	private String sollzeitLandung;
+	private String sollzeitStart;
+	private int startbahn;
+	private String status = "wartend";
+
+	public Flugzeug(){
+	}
+
+	/**
+	 * 
+	 * @param flugzeugtyp
+	 * @param fluggesellschaft
+	 * @param sollzeitLandung
+	 */
+	public Flugzeug(String flugzeugtyp, String fluggesellschaft, String sollzeitLandung){
+       this.flugzeugtyp = flugzeugtyp; 
+       this.fluggesellschaft = fluggesellschaft;
+       this.sollzeitLandung = sollzeitLandung; 
+       
+       anzahlFlugzeuge++; 
+	}
+	
+//	public void finalize() throws Throwable {
+//	}
+
+	public void meldeGelandet(String istzeitLandung){
+        this.istzeitLandung = istzeitLandung; 
+		status = "Geparkt"; 
+	}
+
+	public void meldeGestartet(String istzeitStart){
+        this.istzeitStart = istzeitStart; 
+		status = "Gestartet";
+	}
+
+	public void print(){
+		System.out.println("\nFlugzeug " + flugnummer + " befindet sich im Status " + status +
+				".\nEs ist vom Typ " + flugzeugtyp + " und gehört der Fluggesellschaft " + fluggesellschaft + ".\n");
+	}
+
+	public void vergebeLandebahn(int landebahn){
+		this.landebahn = landebahn; 
+		status = "Landeanflug";
+	}
+
+	public void vergebeParkstelle(String parkstelle){
+        this.parkstelle = parkstelle;
+		status = "Gelandet"; 
+	}
+
+	public void vergebeStartbahn(int startbahn, String sollzeitStart){
+		this.startbahn = startbahn; 
+		this.sollzeitStart = sollzeitStart; 
+		status = "Startvorbereitung"; 
+	}
+	
 	public static int getAnzahlFlugzeuge() {
 		return anzahlFlugzeuge;
 	}
@@ -90,7 +149,7 @@ public class Flugzeug {
 	public void setSollzeitStart(String sollzeitStart) {
 		this.sollzeitStart = sollzeitStart;
 	}
-
+ 
 	public int getStartbahn() {
 		return startbahn;
 	}
@@ -107,55 +166,4 @@ public class Flugzeug {
 		this.status = status;
 	}
 
-	private String istzeitLandung;
-	private String istzeitStart;
-	private int landebahn;
-	private String parkstelle;
-	private String sollzeitLandung;
-	private String sollzeitStart;
-	private int startbahn;
-	private String status = "wartend";
-
-	public Flugzeug(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-
-	/**
-	 * 
-	 * @param flugzeugtyp
-	 * @param fluggesellschaft
-	 * @param sollzeitLandung
-	 */
-	public Flugzeug(String flugzeugtyp, String fluggesellschaft, String sollzeitLandung){
-
-	}
-
-	public void meldeGelandet(){
-
-	}
-
-	public void meldeGestartet(){
-
-	}
-
-	public void print(){
-
-	}
-
-	public void vergebeLandebahn(){
-
-	}
-
-	public void vergebeParkstelle(){
-
-	}
-
-	public void vergebeStartbahn(){
-
-	}
-
-}
+} 

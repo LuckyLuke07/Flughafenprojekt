@@ -1,3 +1,4 @@
+package hilfsklassen;
 import java.util.Scanner; 
 import java.util.Calendar;
 import java.util.Date;
@@ -18,17 +19,17 @@ public class Abfrage {
 	 * 
 	 * @param frage
 	 */
-	public static int abfrageInt(String frage){
+	public static int abfrageInt(String frage, int min, int max){
       try {
         int zahl = Integer.parseInt(abfrageString(frage)); 
-        if (zahl < 0) {
+        if (zahl < min || zahl > max) {
         	throw new NumberFormatException(""); 
         }
         return zahl; 
       }
       catch ( NumberFormatException e) {
-    	 System.out.println("Bitte eine gültige Zahl eingeben");
-    	 return abfrageInt(frage);
+    	 System.out.println("Bitte eine Zahl im Bereich von " + min + " und " + max + " eingeben.");
+    	 return abfrageInt(frage, min, max);
       }
 	}
 

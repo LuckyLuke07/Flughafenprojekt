@@ -1,3 +1,4 @@
+package flughafen;
 
 public class Fluggesellschaft {
 	
